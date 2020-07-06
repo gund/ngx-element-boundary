@@ -6,5 +6,12 @@
 */
 {
   "files": [],
-  "references": []
+  "references": [
+    {
+      "path": "./projects/ngx-element-boundary/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ngx-element-boundary/tsconfig.spec.json"
+    }
+]
 }
