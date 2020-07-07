@@ -135,6 +135,9 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
   }
 }
 
+/**
+ * Factory for {@link CrossBoundaryNgElementStrategy}
+ */
 export class CrossBoundaryNgElementStrategyFactory
   implements NgElementStrategyFactory {
   constructor(

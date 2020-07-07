@@ -15,10 +15,8 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "ngx-element-boundary": [
-        "dist/ngx-element-boundary/ngx-element-boundary",
-        "dist/ngx-element-boundary"
-      ]
+      "ngx-element-boundary": ["projects/ngx-element-boundary/src"],
+      "ngx-element-boundary/*": ["projects/ngx-element-boundary/*/src"]
     }
   }
 }

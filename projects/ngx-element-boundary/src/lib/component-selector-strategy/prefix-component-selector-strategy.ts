@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Provider } from '@angular/core';
 
 import { ComponentSelectorStrategy } from './component-selector-strategy';
 
@@ -19,6 +19,19 @@ export abstract class PrefixComponentSelectorStrategyOptions {
 export class PrefixComponentSelectorStrategy
   implements ComponentSelectorStrategy {
   constructor(private options: PrefixComponentSelectorStrategyOptions) {}
+
+  /**
+   * Provide {@link PrefixComponentSelectorStrategyOptions} as a value
+   * by using `ValueProvider` DI strategy
+   */
+  static provideOptions(
+    options: PrefixComponentSelectorStrategyOptions
+  ): Provider {
+    return {
+      provide: PrefixComponentSelectorStrategyOptions,
+      useValue: options,
+    };
+  }
 
   isComponent(element: HTMLElement): boolean {
     return element.tagName.toLocaleLowerCase().startsWith(this.options.prefix);
