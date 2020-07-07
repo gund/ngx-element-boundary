@@ -11,7 +11,10 @@ import { SingleAppBoundarySharingStrategy } from './single-app-boundary-sharing-
  *
  * Uses {@link SingleAppBoundarySharingStrategy} by default
  */
-@Injectable({ providedIn: 'root', useClass: SingleAppBoundarySharingStrategy })
+@Injectable({
+  providedIn: 'root',
+  useExisting: SingleAppBoundarySharingStrategy,
+})
 export abstract class BoundarySharingStrategy {
   /**
    * Retrieves array of all currently known {@link ElementBoundary}
