@@ -12,6 +12,9 @@
     },
     {
       "path": "./projects/ngx-element-boundary/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/demo/tsconfig.app.json"
     }
-]
+  ]
 }
