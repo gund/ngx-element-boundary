@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.1](https://github.com/gund/ngx-element-boundary/compare/v1.0.0...v1.0.1) (2020-07-08)
+
+
+### Bug Fixes
+
+* **build:** add UMD and AMD id's for package ([d450170](https://github.com/gund/ngx-element-boundary/commit/d4501708ccd8be4c5fae34fef857eebb0759e050))
+
 # 1.0.0 (2020-07-08)
 
 
