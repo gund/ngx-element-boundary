@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.2](https://github.com/gund/ngx-element-boundary/compare/v1.0.1...v1.0.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* **lib:** use get/set for events prop of element strategies ([5324893](https://github.com/gund/ngx-element-boundary/commit/53248931045e7ede2dcb0544c7317753b9211551))
+
 ## [1.0.1](https://github.com/gund/ngx-element-boundary/compare/v1.0.0...v1.0.1) (2020-07-08)
 
 
