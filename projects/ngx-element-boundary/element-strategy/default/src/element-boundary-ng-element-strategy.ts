@@ -1,9 +1,14 @@
 import { ComponentRef, Injector, Type } from '@angular/core';
-import { NgElementStrategy, NgElementStrategyFactory } from '@angular/elements';
+import {
+  NgElementStrategy,
+  NgElementStrategyEvent,
+  NgElementStrategyFactory,
+} from '@angular/elements';
 import {
   ElementBoundaryNgElementStrategy,
   ElementBoundaryNgElementStrategyFactory,
 } from 'ngx-element-boundary';
+import { Observable } from 'rxjs';
 
 import {
   DefaultNgElementStrategyFactory,
@@ -59,7 +64,13 @@ export class DefaultElementBoundaryNgElementStrategyOptionsDefault
  */
 export class DefaultElementBoundaryNgElementStrategy
   implements ElementBoundaryNgElementStrategy {
-  events = this.defaultStrategy.events;
+  get events() {
+    return this.defaultStrategy.events;
+  }
+
+  set events(events: Observable<NgElementStrategyEvent>) {
+    this.defaultStrategy.events = events;
+  }
 
   private options: DefaultElementBoundaryNgElementStrategyOptionsDefault;
 

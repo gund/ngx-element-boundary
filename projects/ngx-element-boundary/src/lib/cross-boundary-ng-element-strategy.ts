@@ -1,6 +1,10 @@
 import { Injector } from '@angular/core';
-import { NgElementStrategy, NgElementStrategyFactory } from '@angular/elements';
-import { of, Subject } from 'rxjs';
+import {
+  NgElementStrategy,
+  NgElementStrategyEvent,
+  NgElementStrategyFactory,
+} from '@angular/elements';
+import { Observable, of, Subject } from 'rxjs';
 import { take, takeUntil, timeoutWith } from 'rxjs/operators';
 
 import {
@@ -63,7 +67,13 @@ export class CrossBoundaryNgElementStrategyOptionsDefault
  * To disable the timeout you may set it to `0` (zero, number)
  */
 export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
-  events = this.baseStrategy.events;
+  get events() {
+    return this.baseStrategy.events;
+  }
+
+  set events(events: Observable<NgElementStrategyEvent>) {
+    this.baseStrategy.events = events;
+  }
 
   private elementBoundaryService: ElementBoundaryService = this.hookableInjector.get(
     ElementBoundaryService,
