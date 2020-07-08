@@ -27,6 +27,8 @@ However this is expected behavior when using classical Angular Components -
 their `Injector`s are properly inherited and you a lot of times rely on it
 to implement nice patterns.
 
+_Solves https://github.com/angular/angular/issues/24824_
+
 ## How
 
 By default `@angular/elements` allows you to convert any Angular Component
