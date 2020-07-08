@@ -66,11 +66,11 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
   events = this.baseStrategy.events;
 
   private elementBoundaryService: ElementBoundaryService = this.hookableInjector.get(
-    ElementBoundaryService
+    ElementBoundaryService,
   );
 
   private options = new CrossBoundaryNgElementStrategyOptionsDefault(
-    this.incomingOptions
+    this.incomingOptions,
   );
 
   private disconnect$ = new Subject<void>();
@@ -78,7 +78,7 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
   constructor(
     private baseStrategy: ElementBoundaryNgElementStrategy,
     private hookableInjector: HookableInjector,
-    private incomingOptions?: CrossBoundaryNgElementStrategyOptions
+    private incomingOptions?: CrossBoundaryNgElementStrategyOptions,
   ) {}
 
   connect(element: HTMLElement): void {
@@ -94,7 +94,7 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
             ? o$.pipe(timeoutWith(this.options.boundaryTimeoutMs, of(null)))
             : o$,
         take(1),
-        takeUntil(this.disconnect$)
+        takeUntil(this.disconnect$),
       )
       .subscribe((boundary) => {
         if (boundary) {
@@ -142,7 +142,7 @@ export class CrossBoundaryNgElementStrategyFactory
   implements NgElementStrategyFactory {
   constructor(
     private baseStrategyFactory: ElementBoundaryNgElementStrategyFactory,
-    private options?: CrossBoundaryNgElementStrategyOptions
+    private options?: CrossBoundaryNgElementStrategyOptions,
   ) {}
 
   create(injector: Injector): NgElementStrategy {
@@ -151,7 +151,7 @@ export class CrossBoundaryNgElementStrategyFactory
     return new CrossBoundaryNgElementStrategy(
       this.baseStrategyFactory.create(hookableInjector),
       hookableInjector,
-      this.options
+      this.options,
     );
   }
 }

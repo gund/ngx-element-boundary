@@ -22,7 +22,7 @@ describe('ElementBoundaryDirective', () => {
   it('should attach to attribute', () => {
     const fixture = TestBed.createComponent(TestComponent);
     const directiveElem = fixture.debugElement.query(
-      By.directive(ElementBoundaryDirective)
+      By.directive(ElementBoundaryDirective),
     );
 
     expect(directiveElem).toBeTruthy();

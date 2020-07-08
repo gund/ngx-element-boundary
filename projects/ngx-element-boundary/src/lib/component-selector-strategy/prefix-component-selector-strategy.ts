@@ -25,7 +25,7 @@ export class PrefixComponentSelectorStrategy
    * by using `ValueProvider` DI strategy
    */
   static provideOptions(
-    options: PrefixComponentSelectorStrategyOptions
+    options: PrefixComponentSelectorStrategyOptions,
   ): Provider {
     return {
       provide: PrefixComponentSelectorStrategyOptions,

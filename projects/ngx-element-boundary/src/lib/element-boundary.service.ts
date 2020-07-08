@@ -15,14 +15,14 @@ import { isDefined } from './util';
 export class ElementBoundaryService {
   private boundaries$ = this.boundarySharingStrategy.getBoundaries().pipe(
     map((boundaries) =>
-      boundaries.sort((b1, b2) => this.sortBoundariesByDepth(b1, b2))
+      boundaries.sort((b1, b2) => this.sortBoundariesByDepth(b1, b2)),
     ),
-    shareReplay({ bufferSize: 1, refCount: false })
+    shareReplay({ bufferSize: 1, refCount: false }),
   );
 
   constructor(
     private boundarySharingStrategy: BoundarySharingStrategy,
-    @Optional() private componentSelectorStrategy?: ComponentSelectorStrategy
+    @Optional() private componentSelectorStrategy?: ComponentSelectorStrategy,
   ) {}
 
   /**
@@ -41,23 +41,23 @@ export class ElementBoundaryService {
         boundaries.find(
           (boundary) =>
             boundary.element.contains(element) &&
-            !this.hasComponentsBetween(boundary.element, element)
-        )
+            !this.hasComponentsBetween(boundary.element, element),
+        ),
       ),
-      filter(isDefined)
+      filter(isDefined),
     );
   }
 
   private sortBoundariesByDepth(
     b1: ElementBoundary,
-    b2: ElementBoundary
+    b2: ElementBoundary,
   ): number {
     return b1.element.contains(b2.element) ? 1 : -1;
   }
 
   private hasComponentsBetween(
     parent: HTMLElement,
-    child: HTMLElement
+    child: HTMLElement,
   ): boolean {
     if (!this.componentSelectorStrategy) {
       return false;

@@ -15,7 +15,7 @@ import {
  * used by {@link DefaultElementBoundaryNgElementStrategy}
  */
 export type NgElementStrategyComponentRefExtractor = (
-  strategy: NgElementStrategy
+  strategy: NgElementStrategy,
 ) => ComponentRef<any> | undefined;
 
 /**
@@ -65,10 +65,10 @@ export class DefaultElementBoundaryNgElementStrategy
 
   constructor(
     private defaultStrategy: NgElementStrategy,
-    options?: DefaultElementBoundaryNgElementStrategyOptions
+    options?: DefaultElementBoundaryNgElementStrategyOptions,
   ) {
     this.options = new DefaultElementBoundaryNgElementStrategyOptionsDefault(
-      options
+      options,
     );
   }
 
@@ -104,7 +104,7 @@ export interface DefaultNgElementStrategyFactoryStrategy<O = never> {
   create(
     component: Type<any>,
     injector: Injector,
-    options?: O
+    options?: O,
   ): NgElementStrategyFactory;
 }
 
@@ -151,7 +151,7 @@ export class DefaultNgElementStrategyFactoryStrategyDefault
   create(
     component: Type<any>,
     injector: Injector,
-    options?: DefaultNgElementStrategyFactoryOptions
+    options?: DefaultNgElementStrategyFactoryOptions,
   ): NgElementStrategyFactory {
     return new DefaultNgElementStrategyFactory(component, injector, options);
   }
@@ -207,23 +207,23 @@ export class DefaultElementBoundaryNgElementStrategyFactory<
   constructor(
     component: Type<any>,
     injector: Injector,
-    options?: DefaultElementBoundaryNgElementStrategyFactoryOptions<S>
+    options?: DefaultElementBoundaryNgElementStrategyFactoryOptions<S>,
   ) {
     this.options = new DefaultElementBoundaryNgElementStrategyFactoryOptionsDefault(
-      options
+      options,
     );
 
     this.defaultStrategyFactory = this.options.factoryStrategy.create(
       component,
       injector,
-      this.options.factoryStrategyOptions
+      this.options.factoryStrategyOptions,
     );
   }
 
   create(injector: Injector): ElementBoundaryNgElementStrategy {
     return new DefaultElementBoundaryNgElementStrategy(
       this.defaultStrategyFactory.create(injector),
-      this.options.strategyOptions
+      this.options.strategyOptions,
     );
   }
 }

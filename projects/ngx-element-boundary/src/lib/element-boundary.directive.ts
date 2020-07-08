@@ -34,7 +34,7 @@ export class ElementBoundaryDirective implements OnInit, OnChanges {
   constructor(
     private injector: Injector,
     private elemRef: ElementRef,
-    private elementBoundaryService: ElementBoundaryService
+    private elementBoundaryService: ElementBoundaryService,
   ) {}
 
   ngOnInit(): void {

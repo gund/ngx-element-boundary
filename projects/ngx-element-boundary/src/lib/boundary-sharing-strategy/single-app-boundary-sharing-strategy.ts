@@ -15,7 +15,7 @@ export class SingleAppBoundarySharingStrategy
 
   private readonly boundaries$ = this.addBoundary$.pipe(
     scan((acc, boundary) => [...acc, boundary], [] as ElementBoundary[]),
-    shareReplay({ bufferSize: 1, refCount: false })
+    shareReplay({ bufferSize: 1, refCount: false }),
   );
 
   getBoundaries(): Observable<ElementBoundary[]> {

@@ -1,3 +1,3 @@
 module.exports = {
-  coverageDirectory: "<rootDir>/coverage/ngx-element-boundary",
+  coverageDirectory: '<rootDir>/coverage/ngx-element-boundary',
 };

@@ -18,7 +18,7 @@ export class Child3Component {
 
   constructor(
     @Optional() public exampleService?: ExampleService,
-    @Optional() public child2?: Child2Component
+    @Optional() public child2?: Child2Component,
   ) {
     console.log('Child3 ExampleService', exampleService);
     console.log('Child3 Child2Component', child2);

@@ -12,7 +12,7 @@ import {
  * used by {@link DefaultNgElementStrategyFactory}
  */
 export type NgElementStrategyExtractor = (
-  element: NgElement
+  element: NgElement,
 ) => NgElementStrategy;
 
 /**
@@ -67,7 +67,7 @@ export class DefaultNgElementStrategyFactory
   constructor(
     component: Type<any>,
     injector: Injector,
-    options?: DefaultNgElementStrategyFactoryOptions
+    options?: DefaultNgElementStrategyFactoryOptions,
   ) {
     this.options = new DefaultNgElementStrategyFactoryOptionsDefault(options);
 

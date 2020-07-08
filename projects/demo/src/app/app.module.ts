@@ -47,14 +47,14 @@ export class AppModule {
 
   constructor(
     private injector: Injector,
-    private cfr: ComponentFactoryResolver
+    private cfr: ComponentFactoryResolver,
   ) {}
 
   ngDoBootstrap(): void {
     this.componentDefs
       .map((component) => this.initComponent(component))
       .forEach(({ name, customElement }) =>
-        customElements.define(name, customElement)
+        customElements.define(name, customElement),
       );
   }
 
@@ -64,12 +64,12 @@ export class AppModule {
 
     const defaultNgElementStrategyFactory = new DefaultElementBoundaryNgElementStrategyFactory(
       type,
-      this.injector
+      this.injector,
     );
 
     const connectedNgElementStrategyFactory = new CrossBoundaryNgElementStrategyFactory(
       defaultNgElementStrategyFactory,
-      { isRoot }
+      { isRoot },
     );
 
     const customElement = createCustomElement(type, {

@@ -41,7 +41,7 @@ export class GlobalBoundarySharingStrategy implements BoundarySharingStrategy {
 
   private readonly boundaries$ = this.addBoundary$.pipe(
     scan((acc, boundary) => [...acc, boundary], [] as ElementBoundary[]),
-    shareReplay({ bufferSize: 1, refCount: false })
+    shareReplay({ bufferSize: 1, refCount: false }),
   );
 
   private get _boundary$(): ReplaySubject<ElementBoundary> {
@@ -57,7 +57,7 @@ export class GlobalBoundarySharingStrategy implements BoundarySharingStrategy {
 
   constructor(
     private options: GlobalBoundarySharingStrategyOptions,
-    private globalRef: GlobalRef
+    private globalRef: GlobalRef,
   ) {}
 
   getBoundaries(): Observable<ElementBoundary[]> {
