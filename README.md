@@ -7,7 +7,7 @@
 
 | Angular | ngx-element-boundary | NPM package                   |
 | ------- | -------------------- | ----------------------------- |
-| 10.x.x  | 0.x.x                | `ngx-element-boundary@^0.0.0` |
+| 10.x.x  | 1.x.x                | `ngx-element-boundary@^1.0.0` |
 
 _NOTE:_ For Angular versions below v10 it may work but was not tested.
 
@@ -54,10 +54,10 @@ All you have to do is to use custom `NgElementStrategy` called
 when you are converting your Angular Component to Custom Element:
 
 ```ts
-import { Component } from "@angular/core";
-import { createCustomElement } from "@angular/element";
-import { CrossBoundaryNgElementStrategyFactory } from "ngx-element-boundary";
-import { DefaultElementBoundaryNgElementStrategyFactory } from "ngx-element-boundary/element-strategy/default";
+import { Component } from '@angular/core';
+import { createCustomElement } from '@angular/element';
+import { CrossBoundaryNgElementStrategyFactory } from 'ngx-element-boundary';
+import { DefaultElementBoundaryNgElementStrategyFactory } from 'ngx-element-boundary/element-strategy/default';
 
 @Component()
 class MyAwesomeComponent {}
@@ -65,7 +65,7 @@ class MyAwesomeComponent {}
 // First create the default strategy
 const defaultElementBoundaryStrategyFactory = new DefaultElementBoundaryNgElementStrategyFactory(
   MyAwesomeComponent,
-  injector
+  injector,
 );
 
 // Then create the cross boundary strategy that uses the default one
@@ -73,7 +73,7 @@ const connectedNgElementStrategyFactory = new CrossBoundaryNgElementStrategyFact
   defaultElementBoundaryStrategyFactory,
   {
     isRoot: true, // Set to `true` for ONLY top-level custom element
-  }
+  },
 );
 
 const MyAwesomeCustomElement = createCustomElement(MyAwesomeComponent, {
@@ -81,7 +81,7 @@ const MyAwesomeCustomElement = createCustomElement(MyAwesomeComponent, {
   strategyFactory: connectedNgElementStrategyFactory,
 });
 
-customElements.define("my-awesome", MyAwesomeCustomElement);
+customElements.define('my-awesome', MyAwesomeCustomElement);
 ```
 
 As long as your Custom Elements are created using `CrossBoundaryNgElementStrategy`
