@@ -17,8 +17,8 @@
     "test:report": "cd coverage/ngx-element-boundary && codecov",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "prettier --write \"projects/**/*\"",
-    "format:check": "prettier --check \"projects/**/*\"",
+    "format": "prettier --write \"**/*.{ts,js,json,?css,html}\"",
+    "format:check": "prettier --check \"**/*.{ts,js,json,?css,html}\"",
     "pack": "copyfiles LICENSE README.md CODE_OF_CONDUCT.md CHANGELOG.md dist/ngx-element-boundary",
     "semantic-release": "semantic-release",
     "postinstall": "ngcc"
@@ -81,7 +81,7 @@
     ]
   },
   "lint-staged": {
-    "projects/**/*": [
+    "**/*.{ts,js,json,?css,html}": [
       "prettier --write"
     ]
   }
