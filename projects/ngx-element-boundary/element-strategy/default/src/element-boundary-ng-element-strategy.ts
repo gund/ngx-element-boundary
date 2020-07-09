@@ -1,14 +1,10 @@
 import { ComponentRef, Injector, Type } from '@angular/core';
-import {
-  NgElementStrategy,
-  NgElementStrategyEvent,
-  NgElementStrategyFactory,
-} from '@angular/elements';
+import { NgElementStrategy, NgElementStrategyFactory } from '@angular/elements';
 import {
   ElementBoundaryNgElementStrategy,
   ElementBoundaryNgElementStrategyFactory,
+  maybeLateInitStream,
 } from 'ngx-element-boundary';
-import { Observable } from 'rxjs';
 
 import {
   DefaultNgElementStrategyFactory,
@@ -64,13 +60,10 @@ export class DefaultElementBoundaryNgElementStrategyOptionsDefault
  */
 export class DefaultElementBoundaryNgElementStrategy
   implements ElementBoundaryNgElementStrategy {
-  get events() {
-    return this.defaultStrategy.events;
-  }
-
-  set events(events: Observable<NgElementStrategyEvent>) {
-    this.defaultStrategy.events = events;
-  }
+  // HACK: In Angular Elements before v10 `events` property was not set
+  // before `this.connect()` was not called resulting in `undefined`
+  // so we are using late initialization of stream
+  events = maybeLateInitStream(this.defaultStrategy, 'events');
 
   private options: DefaultElementBoundaryNgElementStrategyOptionsDefault;
 

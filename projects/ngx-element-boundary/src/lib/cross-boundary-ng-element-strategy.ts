@@ -4,8 +4,8 @@ import {
   NgElementStrategyEvent,
   NgElementStrategyFactory,
 } from '@angular/elements';
-import { Observable, of, Subject } from 'rxjs';
-import { take, takeUntil, timeoutWith } from 'rxjs/operators';
+import { Observable, of, Subject, ReplaySubject } from 'rxjs';
+import { take, takeUntil, timeoutWith, switchAll } from 'rxjs/operators';
 
 import {
   ElementBoundaryNgElementStrategy,
@@ -13,6 +13,7 @@ import {
 } from './element-boundary-ng-element-strategy';
 import { ElementBoundaryService } from './element-boundary.service';
 import { HookableInjector } from './hookable-injector';
+import { maybeLateInitStream } from './util';
 
 /**
  * Options for {@link CrossBoundaryNgElementStrategy}
@@ -67,13 +68,10 @@ export class CrossBoundaryNgElementStrategyOptionsDefault
  * To disable the timeout you may set it to `0` (zero, number)
  */
 export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
-  get events() {
-    return this.baseStrategy.events;
-  }
-
-  set events(events: Observable<NgElementStrategyEvent>) {
-    this.baseStrategy.events = events;
-  }
+  // HACK: In Angular Elements before v10 `events` property was not set
+  // before `this.connect()` was not called resulting in `undefined`
+  // so we are using late initialization of stream
+  events = maybeLateInitStream(this.baseStrategy, 'events');
 
   private elementBoundaryService: ElementBoundaryService = this.hookableInjector.get(
     ElementBoundaryService,
