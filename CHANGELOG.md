@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.3](https://github.com/gund/ngx-element-boundary/compare/v1.0.2...v1.0.3) (2020-07-09)
+
+
+### Bug Fixes
+
+* **lib:** simulate late initialization of events stream on element strategies ([ed3d8d5](https://github.com/gund/ngx-element-boundary/commit/ed3d8d566b958adebb7098c974e13abf47f0201b))
+
 ## [1.0.2](https://github.com/gund/ngx-element-boundary/compare/v1.0.1...v1.0.2) (2020-07-08)
 
 
