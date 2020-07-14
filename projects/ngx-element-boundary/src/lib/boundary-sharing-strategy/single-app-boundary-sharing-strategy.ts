@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { scan, shareReplay } from 'rxjs/operators';
 
 import { ElementBoundary } from '../types';
@@ -11,7 +11,7 @@ import { BoundarySharingStrategy } from './boundary-sharing-strategy';
 @Injectable({ providedIn: 'root' })
 export class SingleAppBoundarySharingStrategy
   implements BoundarySharingStrategy {
-  private readonly addBoundary$ = new Subject<ElementBoundary>();
+  private readonly addBoundary$ = new ReplaySubject<ElementBoundary>(Infinity);
 
   private readonly boundaries$ = this.addBoundary$.pipe(
     scan((acc, boundary) => [...acc, boundary], [] as ElementBoundary[]),
