@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.4](https://github.com/gund/ngx-element-boundary/compare/v1.0.3...v1.0.4) (2020-07-14)
+
+
+### Bug Fixes
+
+* **lib:** fix SingleAppBoundarySharingStrategy for late components ([fbf48c1](https://github.com/gund/ngx-element-boundary/commit/fbf48c1620f36d0200670361016b08b83c509def))
+
 ## [1.0.3](https://github.com/gund/ngx-element-boundary/compare/v1.0.2...v1.0.3) (2020-07-09)
 
 
