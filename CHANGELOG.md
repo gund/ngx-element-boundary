@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.5](https://github.com/gund/ngx-element-boundary/compare/v1.0.4...v1.0.5) (2020-07-15)
+
+
+### Bug Fixes
+
+* **lib:** add component ref getter to default element boundary strategy ([24e28c6](https://github.com/gund/ngx-element-boundary/commit/24e28c6ba220bcb1bab2cd225cf836c2d9ee501f))
+
 ## [1.0.4](https://github.com/gund/ngx-element-boundary/compare/v1.0.3...v1.0.4) (2020-07-14)
 
 
