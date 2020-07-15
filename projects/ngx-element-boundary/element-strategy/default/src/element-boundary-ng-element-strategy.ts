@@ -65,11 +65,6 @@ export class DefaultElementBoundaryNgElementStrategy
   // so we are using late initialization of stream
   events = maybeLateInitStream(this.defaultStrategy, 'events');
 
-  // Forward original `ComponentRef` from the default strategy
-  protected get componentRef(): ComponentRef<any> | undefined {
-    return this.getComponentRef();
-  }
-
   private options: DefaultElementBoundaryNgElementStrategyOptionsDefault;
 
   constructor(

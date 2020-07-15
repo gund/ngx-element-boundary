@@ -1,11 +1,7 @@
-import { Injector } from '@angular/core';
-import {
-  NgElementStrategy,
-  NgElementStrategyEvent,
-  NgElementStrategyFactory,
-} from '@angular/elements';
-import { Observable, of, Subject, ReplaySubject } from 'rxjs';
-import { take, takeUntil, timeoutWith, switchAll } from 'rxjs/operators';
+import { ComponentRef, Injector } from '@angular/core';
+import { NgElementStrategy, NgElementStrategyFactory } from '@angular/elements';
+import { of, Subject } from 'rxjs';
+import { take, takeUntil, timeoutWith } from 'rxjs/operators';
 
 import {
   ElementBoundaryNgElementStrategy,
@@ -72,6 +68,11 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
   // before `this.connect()` was not called resulting in `undefined`
   // so we are using late initialization of stream
   events = maybeLateInitStream(this.baseStrategy, 'events');
+
+  // Get `ComponentRef` from the base strategy
+  get componentRef(): ComponentRef<any> | undefined {
+    return this.baseStrategy.getComponentRef();
+  }
 
   private elementBoundaryService: ElementBoundaryService = this.hookableInjector.get(
     ElementBoundaryService,
