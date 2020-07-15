@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.6](https://github.com/gund/ngx-element-boundary/compare/v1.0.5...v1.0.6) (2020-07-15)
+
+
+### Bug Fixes
+
+* **lib:** expose component ref from cross boundary element strategy ([858ec14](https://github.com/gund/ngx-element-boundary/commit/858ec1422e81054b431213f8c432ccaad7dcc84e))
+
 ## [1.0.5](https://github.com/gund/ngx-element-boundary/compare/v1.0.4...v1.0.5) (2020-07-15)
 
 
