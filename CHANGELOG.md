@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.7](https://github.com/gund/ngx-element-boundary/compare/v1.0.6...v1.0.7) (2020-07-17)
+
+
+### Bug Fixes
+
+* **service:** improve performance of components initialization ([c68426f](https://github.com/gund/ngx-element-boundary/commit/c68426f58f3655009315b6f3c368dae664661b62))
+
 ## [1.0.6](https://github.com/gund/ngx-element-boundary/compare/v1.0.5...v1.0.6) (2020-07-15)
 
 
