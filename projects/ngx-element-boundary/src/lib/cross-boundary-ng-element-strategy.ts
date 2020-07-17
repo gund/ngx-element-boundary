@@ -1,7 +1,7 @@
 import { ComponentRef, Injector } from '@angular/core';
 import { NgElementStrategy, NgElementStrategyFactory } from '@angular/elements';
-import { of, Subject } from 'rxjs';
-import { take, takeUntil, timeoutWith } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { take, takeUntil } from 'rxjs/operators';
 
 import {
   ElementBoundaryNgElementStrategy,
@@ -96,15 +96,8 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
     }
 
     this.elementBoundaryService
-      .whenBoundaryExist(element)
-      .pipe(
-        (o$) =>
-          this.options.boundaryTimeoutMs > 0
-            ? o$.pipe(timeoutWith(this.options.boundaryTimeoutMs, of(null)))
-            : o$,
-        take(1),
-        takeUntil(this.disconnect$),
-      )
+      .whenBoundaryExist(element, this.options.boundaryTimeoutMs)
+      .pipe(take(1), takeUntil(this.disconnect$))
       .subscribe((boundary) => {
         if (boundary) {
           this.hookableInjector.hook(boundary.injector);

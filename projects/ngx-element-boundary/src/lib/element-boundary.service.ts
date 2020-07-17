@@ -35,7 +35,10 @@ export class ElementBoundaryService {
   /**
    * Wait until appropriate "element boundary" exists for HTML Element
    */
-  whenBoundaryExist(element: HTMLElement): Observable<ElementBoundary> {
+  whenBoundaryExist(
+    element: HTMLElement,
+    timeoutMs: number,
+  ): Observable<ElementBoundary | null> {
     return this.boundaries$.pipe(
       map((boundaries) =>
         boundaries.find(
@@ -45,6 +48,8 @@ export class ElementBoundaryService {
         ),
       ),
       filter(isDefined),
+      (o$) => (timeoutMs > 0 ? o$.pipe(timeoutWith(timeoutMs, of(null))) : o$),
+      shareReplay({ bufferSize: 1, refCount: false }),
     );
   }
 
