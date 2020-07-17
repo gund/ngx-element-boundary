@@ -1,6 +1,12 @@
 import { Injectable, Optional } from '@angular/core';
-import { Observable } from 'rxjs';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import {
+  debounceTime,
+  filter,
+  map,
+  shareReplay,
+  timeoutWith,
+} from 'rxjs/operators';
 
 import { BoundarySharingStrategy } from './boundary-sharing-strategy/boundary-sharing-strategy';
 import { ComponentSelectorStrategy } from './component-selector-strategy/component-selector-strategy';
@@ -14,6 +20,7 @@ import { isDefined } from './util';
 @Injectable({ providedIn: 'root' })
 export class ElementBoundaryService {
   private boundaries$ = this.boundarySharingStrategy.getBoundaries().pipe(
+    debounceTime(0),
     map((boundaries) =>
       boundaries.sort((b1, b2) => this.sortBoundariesByDepth(b1, b2)),
     ),
