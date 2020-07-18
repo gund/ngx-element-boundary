@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.8](https://github.com/gund/ngx-element-boundary/compare/v1.0.7...v1.0.8) (2020-07-18)
+
+
+### Bug Fixes
+
+* **lib:** add Angular v9 to version range of v1 ([2383bba](https://github.com/gund/ngx-element-boundary/commit/2383bba4192bba188a34f62fbcdc7f32e898bfa7))
+
 ## [1.0.7](https://github.com/gund/ngx-element-boundary/compare/v1.0.6...v1.0.7) (2020-07-17)
 
 
