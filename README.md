@@ -8,6 +8,7 @@
 | Angular | ngx-element-boundary | NPM package                   |
 | ------- | -------------------- | ----------------------------- |
 | 10.x.x  | 1.x.x                | `ngx-element-boundary@^1.0.0` |
+| 9.x.x   | 1.x.x                | `ngx-element-boundary@^1.0.0` |
 
 _NOTE:_ For Angular versions below v10 it may work but was not tested.
 
