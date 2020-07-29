@@ -1,5 +1,12 @@
 # ngx-element-boundary - Changelog
 
+## [1.0.9](https://github.com/gund/ngx-element-boundary/compare/v1.0.8...v1.0.9) (2020-07-29)
+
+
+### Bug Fixes
+
+* **lib:** refcount streams in ElementBoundaryService ([3f4264a](https://github.com/gund/ngx-element-boundary/commit/3f4264a4bb642e113dea5673c17c8e73e232a25d))
+
 ## [1.0.8](https://github.com/gund/ngx-element-boundary/compare/v1.0.7...v1.0.8) (2020-07-18)
 
 
