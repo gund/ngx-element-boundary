@@ -24,7 +24,7 @@ export class ElementBoundaryService {
     map((boundaries) =>
       boundaries.sort((b1, b2) => this.sortBoundariesByDepth(b1, b2)),
     ),
-    shareReplay({ bufferSize: 1, refCount: false }),
+    shareReplay({ bufferSize: 1, refCount: true }),
   );
 
   constructor(
@@ -50,13 +50,14 @@ export class ElementBoundaryService {
       map((boundaries) =>
         boundaries.find(
           (boundary) =>
+            boundary.element !== element &&
             boundary.element.contains(element) &&
             !this.hasComponentsBetween(boundary.element, element),
         ),
       ),
       filter(isDefined),
       (o$) => (timeoutMs > 0 ? o$.pipe(timeoutWith(timeoutMs, of(null))) : o$),
-      shareReplay({ bufferSize: 1, refCount: false }),
+      shareReplay({ bufferSize: 1, refCount: true }),
     );
   }
 
