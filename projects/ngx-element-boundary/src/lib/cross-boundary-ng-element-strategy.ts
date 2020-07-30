@@ -9,6 +9,7 @@ import {
 } from './element-boundary-ng-element-strategy';
 import { ElementBoundaryService } from './element-boundary.service';
 import { HookableInjector } from './hookable-injector';
+import { ElementBoundary } from './types';
 import { maybeLateInitStream } from './util';
 
 /**
@@ -82,6 +83,8 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
     this.incomingOptions,
   );
 
+  private boundaryRef?: ElementBoundary;
+
   private disconnect$ = new Subject<void>();
 
   constructor(
@@ -108,6 +111,11 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
   }
 
   disconnect(): void {
+    if (this.boundaryRef) {
+      this.elementBoundaryService.removeBoundary(this.boundaryRef);
+      this.boundaryRef = undefined;
+    }
+
     this.disconnect$.next();
     this.baseStrategy.disconnect();
   }
@@ -129,11 +137,14 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
       return;
     }
 
-    this.elementBoundaryService.addBoundary({
+    // Store boundary to remove it later on disconnect
+    this.boundaryRef = {
       injector: componentRef.injector,
       element,
       isComponent: true,
-    });
+    };
+
+    this.elementBoundaryService.addBoundary(this.boundaryRef);
   }
 }
 

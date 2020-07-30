@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, BehaviorSubject } from 'rxjs';
 import { scan, shareReplay } from 'rxjs/operators';
 
 import { ElementBoundary } from '../types';
@@ -37,21 +37,14 @@ export class GlobalBoundarySharingStrategyOptions {
  */
 @Injectable({ providedIn: 'root' })
 export class GlobalBoundarySharingStrategy implements BoundarySharingStrategy {
-  private readonly addBoundary$ = this._boundary$;
-
-  private readonly boundaries$ = this.addBoundary$.pipe(
-    scan((acc, boundary) => [...acc, boundary], [] as ElementBoundary[]),
-    shareReplay({ bufferSize: 1, refCount: false }),
-  );
-
-  private get _boundary$(): ReplaySubject<ElementBoundary> {
+  private get boundaries$(): BehaviorSubject<ElementBoundary[]> {
     return (
       this.globalRef.global[this.options.propName] ||
-      (this._boundary$ = new ReplaySubject(1))
+      (this.boundaries$ = new BehaviorSubject<ElementBoundary[]>([]))
     );
   }
 
-  private set _boundary$(boundaries: ReplaySubject<ElementBoundary>) {
+  private set boundaries$(boundaries: BehaviorSubject<ElementBoundary[]>) {
     this.globalRef.global[this.options.propName] = boundaries;
   }
 
@@ -61,10 +54,28 @@ export class GlobalBoundarySharingStrategy implements BoundarySharingStrategy {
   ) {}
 
   getBoundaries(): Observable<ElementBoundary[]> {
-    return this.boundaries$;
+    return this.boundaries$.asObservable();
   }
 
   addBoundary(boundary: ElementBoundary): void {
-    this.addBoundary$.next(boundary);
+    const boundaries = this.boundaries$.getValue();
+
+    boundaries.push(boundary);
+
+    this.boundaries$.next(boundaries);
+  }
+
+  removeBoundary(boundary: ElementBoundary): void {
+    const boundaries = this.boundaries$.getValue();
+
+    const idx = boundaries.indexOf(boundary);
+
+    if (idx === -1) {
+      return;
+    }
+
+    boundaries.splice(idx, 1);
+
+    this.boundaries$.next(boundaries);
   }
 }

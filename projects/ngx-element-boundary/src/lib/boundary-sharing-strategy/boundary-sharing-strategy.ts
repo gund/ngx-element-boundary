@@ -25,4 +25,9 @@ export abstract class BoundarySharingStrategy {
    * Add one {@link ElementBoundary}
    */
   abstract addBoundary(boundary: ElementBoundary): void;
+
+  /**
+   * Remove one {@link ElementBoundary}
+   */
+  abstract removeBoundary(boundary: ElementBoundary): void;
 }

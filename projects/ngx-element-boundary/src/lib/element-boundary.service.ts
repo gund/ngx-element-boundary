@@ -40,6 +40,13 @@ export class ElementBoundaryService {
   }
 
   /**
+   * Unregister "element boundary"
+   */
+  removeBoundary(boundary: ElementBoundary): void {
+    this.boundarySharingStrategy.removeBoundary(boundary);
+  }
+
+  /**
    * Wait until appropriate "element boundary" exists for HTML Element
    */
   whenBoundaryExist(

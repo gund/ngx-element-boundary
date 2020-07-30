@@ -6,10 +6,12 @@ import {
   OnChanges,
   OnInit,
   SimpleChanges,
+  OnDestroy,
 } from '@angular/core';
 
 import { ElementBoundaryService } from './element-boundary.service';
 import { HookableInjector } from './hookable-injector';
+import { ElementBoundary } from './types';
 
 /**
  * Directive allows to specify contextual "element boundary"
@@ -25,11 +27,17 @@ import { HookableInjector } from './hookable-injector';
 @Directive({
   selector: '[nebElementBoundary]',
 })
-export class ElementBoundaryDirective implements OnInit, OnChanges {
+export class ElementBoundaryDirective implements OnInit, OnChanges, OnDestroy {
   /** Override default {@link Injector} */
   @Input() nebElementBoundary?: Injector;
 
   private hookableInjector = new HookableInjector(this.injector);
+
+  private boundaryRef: ElementBoundary = {
+    injector: this.hookableInjector,
+    element: this.elemRef.nativeElement,
+    isComponent: false,
+  };
 
   constructor(
     private injector: Injector,
@@ -38,11 +46,7 @@ export class ElementBoundaryDirective implements OnInit, OnChanges {
   ) {}
 
   ngOnInit(): void {
-    this.elementBoundaryService.addBoundary({
-      injector: this.hookableInjector,
-      element: this.elemRef.nativeElement,
-      isComponent: false,
-    });
+    this.elementBoundaryService.addBoundary(this.boundaryRef);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -53,5 +57,9 @@ export class ElementBoundaryDirective implements OnInit, OnChanges {
         this.hookableInjector.unhook();
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.elementBoundaryService.removeBoundary(this.boundaryRef);
   }
 }

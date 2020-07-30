@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject } from 'rxjs';
-import { scan, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 import { ElementBoundary } from '../types';
 import { BoundarySharingStrategy } from './boundary-sharing-strategy';
@@ -11,18 +10,31 @@ import { BoundarySharingStrategy } from './boundary-sharing-strategy';
 @Injectable({ providedIn: 'root' })
 export class SingleAppBoundarySharingStrategy
   implements BoundarySharingStrategy {
-  private readonly addBoundary$ = new ReplaySubject<ElementBoundary>(Infinity);
-
-  private readonly boundaries$ = this.addBoundary$.pipe(
-    scan((acc, boundary) => [...acc, boundary], [] as ElementBoundary[]),
-    shareReplay({ bufferSize: 1, refCount: false }),
-  );
+  private readonly boundaries$ = new BehaviorSubject<ElementBoundary[]>([]);
 
   getBoundaries(): Observable<ElementBoundary[]> {
-    return this.boundaries$;
+    return this.boundaries$.asObservable();
   }
 
   addBoundary(boundary: ElementBoundary): void {
-    this.addBoundary$.next(boundary);
+    const boundaries = this.boundaries$.getValue();
+
+    boundaries.push(boundary);
+
+    this.boundaries$.next(boundaries);
+  }
+
+  removeBoundary(boundary: ElementBoundary): void {
+    const boundaries = this.boundaries$.getValue();
+
+    const idx = boundaries.indexOf(boundary);
+
+    if (idx === -1) {
+      return;
+    }
+
+    boundaries.splice(idx, 1);
+
+    this.boundaries$.next(boundaries);
   }
 }
