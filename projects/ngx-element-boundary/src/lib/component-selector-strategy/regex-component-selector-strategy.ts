@@ -17,7 +17,8 @@ export abstract class RegexComponentSelectorStrategyOptions {
  */
 @Injectable()
 export class RegexComponentSelectorStrategy
-  implements ComponentSelectorStrategy {
+  implements ComponentSelectorStrategy
+{
   constructor(private options: RegexComponentSelectorStrategyOptions) {}
 
   isComponent(element: HTMLElement): boolean {

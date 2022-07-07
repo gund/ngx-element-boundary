@@ -17,7 +17,8 @@ export abstract class PrefixComponentSelectorStrategyOptions {
  */
 @Injectable()
 export class PrefixComponentSelectorStrategy
-  implements ComponentSelectorStrategy {
+  implements ComponentSelectorStrategy
+{
   constructor(private options: PrefixComponentSelectorStrategyOptions) {}
 
   /**

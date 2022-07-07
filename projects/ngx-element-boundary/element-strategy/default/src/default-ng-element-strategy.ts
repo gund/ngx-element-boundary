@@ -32,7 +32,8 @@ export interface DefaultNgElementStrategyFactoryOptions {
  * strategy from protected property `NgElement.ngElementStrategy`
  */
 export class DefaultNgElementStrategyFactoryOptionsDefault
-  implements DefaultNgElementStrategyFactoryOptions {
+  implements DefaultNgElementStrategyFactoryOptions
+{
   constructor({
     strategyExtractor,
   }: DefaultNgElementStrategyFactoryOptions = {}) {
@@ -58,7 +59,8 @@ export class DefaultNgElementStrategyFactoryOptionsDefault
  * and then using {@link NgElementStrategyExtractor} to get the strategy from it
  */
 export class DefaultNgElementStrategyFactory
-  implements NgElementStrategyFactory {
+  implements NgElementStrategyFactory
+{
   private static instance = 0;
 
   private readonly options: DefaultNgElementStrategyFactoryOptionsDefault;

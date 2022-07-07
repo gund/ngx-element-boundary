@@ -9,7 +9,8 @@ import { BoundarySharingStrategy } from './boundary-sharing-strategy';
  */
 @Injectable({ providedIn: 'root' })
 export class SingleAppBoundarySharingStrategy
-  implements BoundarySharingStrategy {
+  implements BoundarySharingStrategy
+{
   private readonly boundaries$ = new BehaviorSubject<ElementBoundary[]>([]);
 
   getBoundaries(): Observable<ElementBoundary[]> {

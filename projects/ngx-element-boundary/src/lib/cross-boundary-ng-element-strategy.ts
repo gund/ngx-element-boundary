@@ -31,7 +31,8 @@ export interface CrossBoundaryNgElementStrategyOptions {
  * Default options for {@link CrossBoundaryNgElementStrategy}
  */
 export class CrossBoundaryNgElementStrategyOptionsDefault
-  implements CrossBoundaryNgElementStrategyOptions {
+  implements CrossBoundaryNgElementStrategyOptions
+{
   isRoot: boolean;
   boundaryTimeoutMs: number;
 
@@ -70,9 +71,8 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
   // so we are using late initialization of stream
   events = maybeLateInitStream(this.baseStrategy, 'events');
 
-  private elementBoundaryService: ElementBoundaryService = this.hookableInjector.get(
-    ElementBoundaryService,
-  );
+  private elementBoundaryService: ElementBoundaryService =
+    this.hookableInjector.get(ElementBoundaryService);
 
   private options = new CrossBoundaryNgElementStrategyOptionsDefault(
     this.incomingOptions,
@@ -152,7 +152,8 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
  * Factory for {@link CrossBoundaryNgElementStrategy}
  */
 export class CrossBoundaryNgElementStrategyFactory
-  implements NgElementStrategyFactory {
+  implements NgElementStrategyFactory
+{
   constructor(
     private baseStrategyFactory: ElementBoundaryNgElementStrategyFactory,
     private options?: CrossBoundaryNgElementStrategyOptions,
