@@ -5,7 +5,7 @@ import {
   filter,
   map,
   shareReplay,
-  timeoutWith,
+  timeout,
 } from 'rxjs/operators';
 
 import { BoundarySharingStrategy } from './boundary-sharing-strategy/boundary-sharing-strategy';
@@ -63,7 +63,10 @@ export class ElementBoundaryService {
         ),
       ),
       filter(isDefined),
-      (o$) => (timeoutMs > 0 ? o$.pipe(timeoutWith(timeoutMs, of(null))) : o$),
+      (o$) =>
+        timeoutMs > 0
+          ? o$.pipe(timeout({ first: timeoutMs, with: () => of(null) }))
+          : o$,
       shareReplay({ bufferSize: 1, refCount: true }),
     );
   }

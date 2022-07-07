@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "plugins": ["deprecation"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -22,5 +23,8 @@
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
     }
-  ]
+  ],
+  "rules": {
+    "deprecation/deprecation": "warn"
+  }
 }
