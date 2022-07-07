@@ -1,12 +1,13 @@
 import { Injectable, Optional } from '@angular/core';
-import { Observable, of } from 'rxjs';
 import {
+  Observable,
+  of,
   debounceTime,
   filter,
   map,
   shareReplay,
   timeout,
-} from 'rxjs/operators';
+} from 'rxjs';
 
 import { BoundarySharingStrategy } from './boundary-sharing-strategy/boundary-sharing-strategy';
 import { ComponentSelectorStrategy } from './component-selector-strategy/component-selector-strategy';

@@ -1,8 +1,6 @@
 import { ComponentRef, Injector } from '@angular/core';
 import { NgElementStrategy, NgElementStrategyFactory } from '@angular/elements';
-import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
-
+import { Subject, take, takeUntil } from 'rxjs';
 import {
   ElementBoundaryNgElementStrategy,
   ElementBoundaryNgElementStrategyFactory,

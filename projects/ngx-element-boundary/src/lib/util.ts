@@ -1,5 +1,4 @@
-import { ReplaySubject, Observable, ObservedValueOf } from 'rxjs';
-import { switchAll } from 'rxjs/operators';
+import { ReplaySubject, Observable, ObservedValueOf, switchAll } from 'rxjs';
 
 /** @internal */
 export function isDefined<T>(value: T): value is NonNullable<T> {
