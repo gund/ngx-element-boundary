@@ -70,11 +70,6 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
   // so we are using late initialization of stream
   events = maybeLateInitStream(this.baseStrategy, 'events');
 
-  // Get `ComponentRef` from the base strategy
-  get componentRef(): ComponentRef<any> | undefined {
-    return this.baseStrategy.getComponentRef();
-  }
-
   private elementBoundaryService: ElementBoundaryService = this.hookableInjector.get(
     ElementBoundaryService,
   );
@@ -92,6 +87,11 @@ export class CrossBoundaryNgElementStrategy implements NgElementStrategy {
     private hookableInjector: HookableInjector,
     private incomingOptions?: CrossBoundaryNgElementStrategyOptions,
   ) {}
+
+  // Get `ComponentRef` from the base strategy
+  get componentRef(): ComponentRef<any> | undefined {
+    return this.baseStrategy.getComponentRef();
+  }
 
   connect(element: HTMLElement): void {
     if (this.options.isRoot) {

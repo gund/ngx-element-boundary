@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, ReplaySubject, BehaviorSubject } from 'rxjs';
-import { scan, shareReplay } from 'rxjs/operators';
-
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ElementBoundary } from '../types';
 import { BoundarySharingStrategy } from './boundary-sharing-strategy';
 
@@ -37,6 +35,11 @@ export class GlobalBoundarySharingStrategyOptions {
  */
 @Injectable({ providedIn: 'root' })
 export class GlobalBoundarySharingStrategy implements BoundarySharingStrategy {
+  constructor(
+    private options: GlobalBoundarySharingStrategyOptions,
+    private globalRef: GlobalRef,
+  ) {}
+
   private get boundaries$(): BehaviorSubject<ElementBoundary[]> {
     return (
       this.globalRef.global[this.options.propName] ||
@@ -47,11 +50,6 @@ export class GlobalBoundarySharingStrategy implements BoundarySharingStrategy {
   private set boundaries$(boundaries: BehaviorSubject<ElementBoundary[]>) {
     this.globalRef.global[this.options.propName] = boundaries;
   }
-
-  constructor(
-    private options: GlobalBoundarySharingStrategyOptions,
-    private globalRef: GlobalRef,
-  ) {}
 
   getBoundaries(): Observable<ElementBoundary[]> {
     return this.boundaries$.asObservable();

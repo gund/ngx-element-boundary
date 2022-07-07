@@ -59,7 +59,7 @@ export class DefaultNgElementStrategyFactoryOptionsDefault
  */
 export class DefaultNgElementStrategyFactory
   implements NgElementStrategyFactory {
-  private static Instance = 0;
+  private static instance = 0;
 
   private readonly options: DefaultNgElementStrategyFactoryOptionsDefault;
   private readonly elementType: NgElementConstructor<any>;
@@ -73,7 +73,7 @@ export class DefaultNgElementStrategyFactory
 
     this.elementType = createCustomElement(component, { injector });
 
-    const name = `neb-dummy-${DefaultNgElementStrategyFactory.Instance++}`;
+    const name = `neb-dummy-${DefaultNgElementStrategyFactory.instance++}`;
 
     customElements.define(name, this.elementType);
   }

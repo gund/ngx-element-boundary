@@ -85,7 +85,7 @@ export class ElementBoundaryService {
 
     let element: HTMLElement | null = child;
 
-    // tslint:disable-next-line: no-conditional-assignment
+    // eslint-disable-next-line no-cond-assign
     while ((element = element.parentElement) && element !== parent) {
       if (this.componentSelectorStrategy.isComponent(element)) {
         return true;
