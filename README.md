@@ -7,6 +7,7 @@
 
 | Angular | ngx-element-boundary | NPM package                   |
 | ------- | -------------------- | ----------------------------- |
+| 14.x.x  | 2.x.x                | `ngx-element-boundary@^2.0.0` |
 | 10.x.x  | 1.x.x                | `ngx-element-boundary@^1.0.0` |
 | 9.x.x   | 1.x.x                | `ngx-element-boundary@^1.0.0` |
 
