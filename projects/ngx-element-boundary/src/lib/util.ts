@@ -16,7 +16,7 @@ export function isDefined<T>(value: T): value is NonNullable<T> {
 export function maybeLateInitStream<
   T,
   P extends keyof T,
-  R = ObservedValueOf<T[P]>
+  R = ObservedValueOf<T[P]>,
 >(object: T, prop: P): Observable<R> {
   if (object[prop]) {
     return object[prop] as any;

@@ -32,7 +32,8 @@ export interface DefaultNgElementStrategyFactoryOptions {
  * strategy from protected property `NgElement.ngElementStrategy`
  */
 export class DefaultNgElementStrategyFactoryOptionsDefault
-  implements DefaultNgElementStrategyFactoryOptions {
+  implements DefaultNgElementStrategyFactoryOptions
+{
   constructor({
     strategyExtractor,
   }: DefaultNgElementStrategyFactoryOptions = {}) {
@@ -58,8 +59,9 @@ export class DefaultNgElementStrategyFactoryOptionsDefault
  * and then using {@link NgElementStrategyExtractor} to get the strategy from it
  */
 export class DefaultNgElementStrategyFactory
-  implements NgElementStrategyFactory {
-  private static Instance = 0;
+  implements NgElementStrategyFactory
+{
+  private static instance = 0;
 
   private readonly options: DefaultNgElementStrategyFactoryOptionsDefault;
   private readonly elementType: NgElementConstructor<any>;
@@ -73,7 +75,7 @@ export class DefaultNgElementStrategyFactory
 
     this.elementType = createCustomElement(component, { injector });
 
-    const name = `neb-dummy-${DefaultNgElementStrategyFactory.Instance++}`;
+    const name = `neb-dummy-${DefaultNgElementStrategyFactory.instance++}`;
 
     customElements.define(name, this.elementType);
   }

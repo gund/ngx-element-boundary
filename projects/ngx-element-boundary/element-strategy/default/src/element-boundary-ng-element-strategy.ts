@@ -36,7 +36,8 @@ export interface DefaultElementBoundaryNgElementStrategyOptions {
  * protected private `ComponentNgElementStrategy.componentRef`
  */
 export class DefaultElementBoundaryNgElementStrategyOptionsDefault
-  implements DefaultElementBoundaryNgElementStrategyOptions {
+  implements DefaultElementBoundaryNgElementStrategyOptions
+{
   constructor({
     componentRefExtractor,
   }: DefaultElementBoundaryNgElementStrategyOptions = {}) {
@@ -59,7 +60,8 @@ export class DefaultElementBoundaryNgElementStrategyOptionsDefault
  * from default {@link NgElementStrategy} of `@angular/elements` package
  */
 export class DefaultElementBoundaryNgElementStrategy
-  implements ElementBoundaryNgElementStrategy {
+  implements ElementBoundaryNgElementStrategy
+{
   // HACK: In Angular Elements before v10 `events` property was not set
   // before `this.connect()` was not called resulting in `undefined`
   // so we are using late initialization of stream
@@ -115,15 +117,14 @@ export interface DefaultNgElementStrategyFactoryStrategy<O = never> {
 /**
  * Extract options type `O` from the {@link DefaultNgElementStrategyFactoryStrategy}
  */
-export type DefaultNgElementStrategyFactoryStrategyOptions<
-  S
-> = S extends DefaultNgElementStrategyFactoryStrategy<infer O> ? O : never;
+export type DefaultNgElementStrategyFactoryStrategyOptions<S> =
+  S extends DefaultNgElementStrategyFactoryStrategy<infer O> ? O : never;
 
 /**
  * Options for {@link DefaultElementBoundaryNgElementStrategyFactory}
  */
 export interface DefaultElementBoundaryNgElementStrategyFactoryOptions<
-  S extends DefaultNgElementStrategyFactoryStrategy<any>
+  S extends DefaultNgElementStrategyFactoryStrategy<any>,
 > {
   /**
    * Strategy to create the default {@link NgElementStrategyFactory}
@@ -149,9 +150,8 @@ export interface DefaultElementBoundaryNgElementStrategyFactoryOptions<
  */
 export class DefaultNgElementStrategyFactoryStrategyDefault
   implements
-    DefaultNgElementStrategyFactoryStrategy<
-      DefaultNgElementStrategyFactoryOptions
-    > {
+    DefaultNgElementStrategyFactoryStrategy<DefaultNgElementStrategyFactoryOptions>
+{
   create(
     component: Type<any>,
     injector: Injector,
@@ -168,10 +168,9 @@ export class DefaultNgElementStrategyFactoryStrategyDefault
  * as a {@link DefaultNgElementStrategyFactoryStrategy}
  */
 export class DefaultElementBoundaryNgElementStrategyFactoryOptionsDefault<
-  S extends DefaultNgElementStrategyFactoryStrategy<
-    any
-  > = DefaultNgElementStrategyFactoryStrategyDefault
-> implements DefaultElementBoundaryNgElementStrategyFactoryOptions<S> {
+  S extends DefaultNgElementStrategyFactoryStrategy<any> = DefaultNgElementStrategyFactoryStrategyDefault,
+> implements DefaultElementBoundaryNgElementStrategyFactoryOptions<S>
+{
   factoryStrategy: S;
   factoryStrategyOptions?: DefaultNgElementStrategyFactoryStrategyOptions<S>;
   strategyOptions?: DefaultElementBoundaryNgElementStrategyOptions;
@@ -199,13 +198,10 @@ export class DefaultElementBoundaryNgElementStrategyFactoryOptionsDefault<
  * as a {@link DefaultNgElementStrategyFactoryStrategy}
  */
 export class DefaultElementBoundaryNgElementStrategyFactory<
-  S extends DefaultNgElementStrategyFactoryStrategy<
-    any
-  > = DefaultNgElementStrategyFactoryStrategyDefault
-> implements ElementBoundaryNgElementStrategyFactory {
-  private options: DefaultElementBoundaryNgElementStrategyFactoryOptionsDefault<
-    S
-  >;
+  S extends DefaultNgElementStrategyFactoryStrategy<any> = DefaultNgElementStrategyFactoryStrategyDefault,
+> implements ElementBoundaryNgElementStrategyFactory
+{
+  private options: DefaultElementBoundaryNgElementStrategyFactoryOptionsDefault<S>;
   private defaultStrategyFactory: NgElementStrategyFactory;
 
   constructor(
@@ -213,9 +209,8 @@ export class DefaultElementBoundaryNgElementStrategyFactory<
     injector: Injector,
     options?: DefaultElementBoundaryNgElementStrategyFactoryOptions<S>,
   ) {
-    this.options = new DefaultElementBoundaryNgElementStrategyFactoryOptionsDefault(
-      options,
-    );
+    this.options =
+      new DefaultElementBoundaryNgElementStrategyFactoryOptionsDefault(options);
 
     this.defaultStrategyFactory = this.options.factoryStrategy.create(
       component,

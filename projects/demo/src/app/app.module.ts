@@ -62,15 +62,14 @@ export class AppModule {
     const componentFactory = this.cfr.resolveComponentFactory(type);
     const name = componentFactory.selector;
 
-    const defaultNgElementStrategyFactory = new DefaultElementBoundaryNgElementStrategyFactory(
-      type,
-      this.injector,
-    );
+    const defaultNgElementStrategyFactory =
+      new DefaultElementBoundaryNgElementStrategyFactory(type, this.injector);
 
-    const connectedNgElementStrategyFactory = new CrossBoundaryNgElementStrategyFactory(
-      defaultNgElementStrategyFactory,
-      { isRoot },
-    );
+    const connectedNgElementStrategyFactory =
+      new CrossBoundaryNgElementStrategyFactory(
+        defaultNgElementStrategyFactory,
+        { isRoot },
+      );
 
     const customElement = createCustomElement(type, {
       injector: this.injector,
