@@ -1,5 +1,17 @@
 # ngx-element-boundary - Changelog
 
+# [2.0.0](https://github.com/gund/ngx-element-boundary/compare/v1.0.10...v2.0.0) (2022-07-07)
+
+
+### Features
+
+* **ng:** update to Angular v14 ([b93d7a9](https://github.com/gund/ngx-element-boundary/commit/b93d7a9c48ea57de934911987e9a236cfce60311))
+
+
+### BREAKING CHANGES
+
+* **ng:** Library is built with Angular v14
+
 ## [1.0.10](https://github.com/gund/ngx-element-boundary/compare/v1.0.9...v1.0.10) (2020-07-30)
 
 
