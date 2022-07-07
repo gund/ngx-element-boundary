@@ -1,8 +1,6 @@
 {
   "$schema": "../../../../node_modules/ng-packagr/ng-package.schema.json",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdId": "ngxElementBoundary.elementStrategy.default",
-    "amdId": "ngxElementBoundary.elementStrategy.default"
+    "entryFile": "src/public-api.ts"
   }
 }

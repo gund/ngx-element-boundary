@@ -2,11 +2,11 @@
   "name": "ngx-element-boundary",
   "version": "0.0.0-development",
   "peerDependencies": {
-    "@angular/common": ">=9.0.0",
-    "@angular/core": ">=9.0.0",
-    "@angular/elements": ">=9.0.0"
+    "@angular/common": ">=14.0.0",
+    "@angular/core": ">=14.0.0",
+    "@angular/elements": ">=14.0.0"
   },
   "dependencies": {
-    "tslib": ">=1.0.0"
+    "tslib": ">=2.0.0"
   }
 }
