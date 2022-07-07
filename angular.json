@@ -14,11 +14,6 @@
           "options": {
             "tsConfig": "projects/ngx-element-boundary/tsconfig.lib.json",
             "project": "projects/ngx-element-boundary/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/ngx-element-boundary/tsconfig.lib.prod.json"
-            }
           }
         },
         "test": {
